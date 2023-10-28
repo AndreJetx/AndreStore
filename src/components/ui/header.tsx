@@ -47,7 +47,7 @@ const Header = () => {
                             <div className="flex items-center gap-2 py-4">
                             <Avatar>
                                 <AvatarFallback>
-                                    {data?.user?.name?.[0].toLocaleUpperCase()}
+                                    {data.user.name?.[0].toLocaleUpperCase()}
                                 </AvatarFallback>
                                 {data.user.image && <AvatarImage src={data.user.image}></AvatarImage>}
                             </Avatar>
