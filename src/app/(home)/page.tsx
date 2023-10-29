@@ -22,6 +22,14 @@ export default async function Home() {
       },
     },  
   })
+
+  const mouses = await priscaCliente.product.findMany ({
+    where:{
+      category: {
+        slug: "mouses",
+      },
+    },  
+  })
   
   return (
     <div className='flex flex-col gap-8'>
@@ -55,8 +63,8 @@ export default async function Home() {
       />
 
       <div className='px-5'>
-        <SectionTitle>Teclados</SectionTitle>
-        <ProductList products={keyboards} />
+        <SectionTitle>Mouses</SectionTitle>
+        <ProductList products={mouses} />
       </div>
 
     </div>
