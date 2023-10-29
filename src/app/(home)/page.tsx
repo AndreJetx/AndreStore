@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Categories from './components/categories';
 import { priscaCliente } from '@/lib/prisma';
 import ProductList from './components/product-list';
+import SectionTitle from './components/section-title';
+import PromoBanner from './components/promo-banner';
 
 export default async function Home() {
 
@@ -12,31 +14,41 @@ export default async function Home() {
       },
     },
   });
+
+  const keyboards = await priscaCliente.product.findMany ({
+    where:{
+      category: {
+        slug: "keyboards",
+      },
+    },  
+  })
   
   return (
     <div>
-      <Image src="/banner-home-01.png"
-        width={0}
-        height={0}
-        className='h-auto w-full'
-        sizes='100vw'
+      <PromoBanner
+        src="/banner-home-01.png"
         alt='Até 55% de desconto esse mês!'
       />
 
       <div className='mt-8 px-5'>
         <Categories />
       </div>
+
       <div className='mt-8 px-5'>
-        <p className='font-semibold uppercase pl-5 mb-3'>Ofertas</p>
+        <SectionTitle>Ofertas</SectionTitle>
         <ProductList products={deals} />
       </div>
-      <Image src="/banner-home-02.png"
-        width={0}
-        height={0}
-        className='h-auto w-full'
-        sizes='100vw'
-        alt='Até 55% de desconto esse mês!'
+
+      <PromoBanner
+        src="/banner-home-02.png"
+        alt='Até 55% de desconto em mouser!'
       />
+
+      <div className='mt-8 px-5'>
+        <SectionTitle>Teclados</SectionTitle>
+        <ProductList products={keyboards} />
+      </div>
+
     </div>
       
   )
